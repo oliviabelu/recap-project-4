@@ -9,3 +9,7 @@
   background: black;
   color: white;
 }
+
+.color-card__role {
+  font-weight: bold;
+}
