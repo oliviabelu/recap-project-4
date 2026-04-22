@@ -1,7 +1,7 @@
 import "./Color.css";
 
 export default function Color({ hex, role, contrastText }) {
-  console.log(hex);
+  //console.log(hex);
   return (
     <article className="color-card" style={{ backgroundColor: hex }}>
       <p className="color-card__headline">{hex}</p>
