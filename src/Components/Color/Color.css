@@ -13,3 +13,19 @@
 .color-card__role {
   font-weight: bold;
 }
+
+.color-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0px 10px;
+  padding: 5px;
+}
+
+.color-form__button {
+  width: fit-content;
+}
+
+.color-form__input {
+  width: fit-content;
+}
