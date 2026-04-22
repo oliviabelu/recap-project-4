@@ -1,7 +1,7 @@
 import { ColorInput } from "../ColorInput/ColorInput";
 
 export default function ColorForm({
-  onAddColors,
+  onAddColor,
   initialData = { role: "some color", hex: "#123456", contrastText: "#ffffff" },
 }) {
   function handleSubmit(event) {
@@ -12,7 +12,7 @@ export default function ColorForm({
     const data = Object.fromEntries(formData);
 
     console.log(data);
-    onAddColors(data);
+    onAddColor(data);
 
     form.reset();
     form.elements.role.focus();

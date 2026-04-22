@@ -10,23 +10,21 @@ import { useState } from "react";
 function App() {
   const [colors, setColors] = useState(initialColors);
 
-  function handleAddColors(newColor) {
-    console.log("testest");
+  function handleAddColor(newColor) {
     setColors([{ id: uid(), ...newColor }, ...colors]);
-    console.log(colors);
   }
 
   return (
     <>
       <h1>Theme Creator</h1>
-      <ColorForm onAddColors={handleAddColors}></ColorForm>
+      <ColorForm onAddColor={handleAddColor} />
       {colors.map((color) => (
         <Color
           key={color.id}
           hex={color.hex}
           role={color.role}
           contrastText={color.contrastText}
-        ></Color>
+        />
       ))}
     </>
   );
