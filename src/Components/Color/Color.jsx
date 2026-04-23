@@ -18,13 +18,10 @@ export default function Color({
   }
 
   function handleIsEdit() {
-    console.log("handleIsEdit");
     setIsEdit(!isEdit);
   }
 
   function handleEditColor(data) {
-    console.log("handleEditColor");
-    console.log(data);
     handleIsEdit();
     onEditColor({ id: id, ...data });
   }

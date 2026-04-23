@@ -3,7 +3,6 @@ import Color from "./Components/Color/Color";
 import ColorForm from "./Components/ColorForm/ColorForm";
 import "./App.css";
 import { uid } from "uid";
-import { useState } from "react";
 import useLocalStorageState from "use-local-storage-state";
 
 function App() {
@@ -20,13 +19,6 @@ function App() {
   }
 
   function handleEditColor(editColor) {
-    console.log(editColor);
-    console.log(
-      editColor.id,
-      editColor.hex,
-      editColor.role,
-      editColor.contrastText,
-    );
     setColors(
       colors.map((color) =>
         color.id === editColor.id
