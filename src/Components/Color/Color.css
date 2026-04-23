@@ -1,6 +1,7 @@
 .color-card {
   margin: 0px 10px;
   padding: 5px;
+  list-style: none;
 }
 
 .color-card__headline {
@@ -28,4 +29,16 @@
 
 .color-form__input {
   width: fit-content;
+}
+
+.color-card__highlight {
+  display: inline;
+  padding: 2px 6px;
+  background: black;
+  color: white;
+}
+
+.color-card__delete-buttons {
+  display: flex;
+  gap: 1em;
 }

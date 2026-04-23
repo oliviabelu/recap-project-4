@@ -5,8 +5,6 @@ import "./App.css";
 import { uid } from "uid";
 import { useState } from "react";
 
-//const color1 = initialColors[0];
-
 function App() {
   const [colors, setColors] = useState(initialColors);
 
@@ -14,18 +12,33 @@ function App() {
     setColors([{ id: uid(), ...newColor }, ...colors]);
   }
 
+  function handleDeleteColor(colorId) {
+    setColors(colors.filter((color) => color.id !== colorId));
+  }
+
+  console.log(colors);
+
   return (
     <>
       <h1>Theme Creator</h1>
       <ColorForm onAddColor={handleAddColor} />
-      {colors.map((color) => (
-        <Color
-          key={color.id}
-          hex={color.hex}
-          role={color.role}
-          contrastText={color.contrastText}
-        />
-      ))}
+      {colors.length !== 0 ? (
+        <ul>
+          {colors.map((color) => (
+            <li key={color.id} className="color-card">
+              <Color
+                id={color.id}
+                hex={color.hex}
+                role={color.role}
+                contrastText={color.contrastText}
+                onDeleteColor={handleDeleteColor}
+              />
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <div>No colors... start by ading one!</div>
+      )}
     </>
   );
 }
