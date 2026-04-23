@@ -3,10 +3,12 @@ import Color from "./Components/Color/Color";
 import ColorForm from "./Components/ColorForm/ColorForm";
 import "./App.css";
 import { uid } from "uid";
-import { useState } from "react";
+import useLocalStorageState from "use-local-storage-state";
 
 function App() {
-  const [colors, setColors] = useState(initialColors);
+  const [colors, setColors] = useLocalStorageState("colors", {
+    defaultValue: initialColors,
+  });
 
   function handleAddColor(newColor) {
     setColors([{ id: uid(), ...newColor }, ...colors]);
@@ -17,13 +19,6 @@ function App() {
   }
 
   function handleEditColor(editColor) {
-    console.log(editColor);
-    console.log(
-      editColor.id,
-      editColor.hex,
-      editColor.role,
-      editColor.contrastText,
-    );
     setColors(
       colors.map((color) =>
         color.id === editColor.id
