@@ -38,12 +38,10 @@ function App() {
     );
   }
 
-  const nameAddButton = "ADD COLOR";
-
   return (
     <>
       <h1>Theme Creator</h1>
-      <ColorForm onColorButton={handleAddColor} buttonName={nameAddButton} />
+      <ColorForm onColorButton={handleAddColor} buttonName={"ADD COLOR"} />
       {colors.length !== 0 ? (
         <ul>
           {colors.map((color) => (

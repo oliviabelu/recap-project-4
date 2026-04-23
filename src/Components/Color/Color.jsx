@@ -13,8 +13,6 @@ export default function Color({
   const [confirmation, setConfirmation] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
 
-  const nameEditButton = "EDIT";
-
   function handleConfirmationSet(bool) {
     setConfirmation(bool);
   }
@@ -41,7 +39,7 @@ export default function Color({
           <ColorForm
             onColorButton={handleEditColor}
             initialData={{ role: role, hex: hex, contrastText: contrastText }}
-            buttonName={nameEditButton}
+            buttonName={"EDIT"}
           />
           <button type="button" onClick={handleIsEdit}>
             CANCEL
