@@ -16,12 +16,32 @@ function App() {
     setColors(colors.filter((color) => color.id !== colorId));
   }
 
-  console.log(colors);
+  function handleEditColor(editColor) {
+    console.log(editColor);
+    console.log(
+      editColor.id,
+      editColor.hex,
+      editColor.role,
+      editColor.contrastText,
+    );
+    setColors(
+      colors.map((color) =>
+        color.id === editColor.id
+          ? {
+              ...color,
+              role: editColor.role,
+              hex: editColor.hex,
+              contrastText: editColor.contrastText,
+            }
+          : color,
+      ),
+    );
+  }
 
   return (
     <>
       <h1>Theme Creator</h1>
-      <ColorForm onAddColor={handleAddColor} />
+      <ColorForm onColorButton={handleAddColor} buttonName={"ADD COLOR"} />
       {colors.length !== 0 ? (
         <ul>
           {colors.map((color) => (
@@ -32,6 +52,7 @@ function App() {
                 role={color.role}
                 contrastText={color.contrastText}
                 onDeleteColor={handleDeleteColor}
+                onEditColor={handleEditColor}
               />
             </li>
           ))}
