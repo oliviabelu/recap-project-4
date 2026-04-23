@@ -4,7 +4,7 @@ import { useState } from "react";
 export default function Color({ id, hex, role, contrastText, onDeleteColor }) {
   const [confirmation, setConfirmation] = useState(false);
 
-  function handleCancelDelete(bool) {
+  function handleConfirmationSet(bool) {
     setConfirmation(bool);
   }
 
@@ -21,7 +21,7 @@ export default function Color({ id, hex, role, contrastText, onDeleteColor }) {
         {confirmation ? (
           <>
             <span className="color-card__highlight">Really Delete?</span>
-            <button type="button" onClick={() => handleCancelDelete(false)}>
+            <button type="button" onClick={() => handleConfirmationSet(false)}>
               CANCEL
             </button>
             <button type="button" onClick={() => onDeleteColor(id)}>
@@ -29,7 +29,7 @@ export default function Color({ id, hex, role, contrastText, onDeleteColor }) {
             </button>
           </>
         ) : (
-          <button type="button" onClick={() => handleCancelDelete(true)}>
+          <button type="button" onClick={() => handleConfirmationSet(true)}>
             DELETE
           </button>
         )}
