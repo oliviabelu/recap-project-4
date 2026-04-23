@@ -1,14 +1,39 @@
 import "./Color.css";
+import { useState } from "react";
 
-export default function Color({ hex, role, contrastText }) {
-  //console.log(hex);
+export default function Color({ id, hex, role, contrastText, onDeleteColor }) {
+  const [confirmation, setConfirmation] = useState(false);
+
+  function handleConfirmationSet(bool) {
+    setConfirmation(bool);
+  }
+
   return (
     <article className="color-card" style={{ backgroundColor: hex }}>
-      <p className="color-card__headline">{hex}</p>
-      <p className="color-card__role" style={{ color: contrastText }}>
-        {role}
-      </p>
+      <h2 className="color-card__headline">{hex}</h2>
+      <h3 style={{ color: contrastText }}>{role}</h3>
       <p style={{ color: contrastText }}>contrast: {contrastText}</p>
+      <div
+        className="color-card__delete-buttons"
+        role="group"
+        aria-label="Deletion Button Group"
+      >
+        {confirmation ? (
+          <>
+            <span className="color-card__highlight">Really Delete?</span>
+            <button type="button" onClick={() => handleConfirmationSet(false)}>
+              CANCEL
+            </button>
+            <button type="button" onClick={() => onDeleteColor(id)}>
+              DELETE
+            </button>
+          </>
+        ) : (
+          <button type="button" onClick={() => handleConfirmationSet(true)}>
+            DELETE
+          </button>
+        )}
+      </div>
     </article>
   );
 }
