@@ -73,13 +73,13 @@ export default function Color({
   function getScoreBackground() {
     switch (contrastScore) {
       case "Yup":
-        return "#38c743";
+        return "#3c8d41";
 
       case "Kinda":
-        return "#f8f807";
+        return "#fde82c";
 
       case "Nope":
-        return "#fd2b13";
+        return "#ce1b2a";
       default:
         return "#c0c0c0";
     }

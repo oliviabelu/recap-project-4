@@ -7,8 +7,7 @@
   border: 1px solid;
   width: fit-content;
   background-color: white;
-  opacity: 0.95;
-  backdrop-filter: blur(16px);
+  /* opacity: 0.85; */
   border-radius: 1em;
 }
 
