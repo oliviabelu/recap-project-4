@@ -1,6 +1,7 @@
 import ColorForm from "../ColorForm/ColorForm";
+import { CopyToClipboard } from "../CopyToClipboard/CopyToClipboard";
 import "./Color.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Color({
   id,
@@ -12,6 +13,7 @@ export default function Color({
 }) {
   const [confirmation, setConfirmation] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
+  const [isCopying, setIsCopying] = useState(false);
 
   function handleConfirmationSet(bool) {
     setConfirmation(bool);
@@ -26,9 +28,35 @@ export default function Color({
     onEditColor({ id: id, ...data });
   }
 
+  function handleSetIsCopying() {
+    setIsCopying(!isCopying);
+  }
+
+  async function handleCopyToClipboard() {
+    handleSetIsCopying();
+
+    try {
+      await navigator.clipboard.writeText(hex);
+    } catch (error) {
+      console.error(error.message);
+    }
+  }
+
+  useEffect(() => {
+    if (isCopying === true) {
+      setTimeout(() => {
+        handleSetIsCopying();
+      }, 3000);
+    }
+  }, [isCopying]);
+
   return (
     <article className="color-card" style={{ backgroundColor: hex }}>
       <h2 className="color-card__headline">{hex}</h2>
+      <CopyToClipboard
+        buttonName={isCopying ? "SUCCESFULLY COPIED!" : "COPY"}
+        onCopyToClipboard={handleCopyToClipboard}
+      />
       <h3 style={{ color: contrastText }}>{role}</h3>
       <p style={{ color: contrastText }}>contrast: {contrastText}</p>
       {isEdit ? (
