@@ -1,0 +1,20 @@
+.color-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 1em;
+  padding: 1em;
+  border: 1px solid;
+  width: fit-content;
+  background-color: white;
+  /* opacity: 0.85; */
+  border-radius: 1em;
+}
+
+.color-form__button {
+  width: fit-content;
+}
+
+.color-form__input {
+  width: fit-content;
+}s

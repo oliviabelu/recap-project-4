@@ -1,9 +1,31 @@
-.color-card {
-  margin: 0px 10px;
-  padding: 5px;
-  list-style: none;
+.color-cards {
+  padding-left: 0px;
+  display: flex;
+  flex-wrap: wrap;
+  z-index: -1;
 }
 
+.color-card {
+  margin: 1em;
+  list-style: none;
+  width: 90vw;
+}
+
+.color-card__content {
+  border-radius: 1em;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  align-items: center;
+  border: 2px solid;
+  box-shadow: 5px 5px 20px 0;
+}
+
+.color-card__header {
+  display: flex;
+  gap: 1em;
+}
 .color-card__headline {
   display: inline;
   padding: 2px 6px;
@@ -13,22 +35,6 @@
 
 .color-card__role {
   font-weight: bold;
-}
-
-.color-form {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin: 0px 10px;
-  padding: 5px;
-}
-
-.color-form__button {
-  width: fit-content;
-}
-
-.color-form__input {
-  width: fit-content;
 }
 
 .color-card__highlight {
@@ -41,4 +47,27 @@
 .color-card__delete-buttons {
   display: flex;
   gap: 1em;
+}
+
+.color-card__contrast-score {
+  width: fit-content;
+  border-radius: 0.3em;
+  padding: 0.3em;
+}
+
+@media (min-width: 600px) {
+  .color-card {
+    width: 45vw;
+  }
+}
+
+@media (min-width: 900px) {
+  .color-card {
+    width: 30vw;
+  }
+}
+@media (min-width: 1200px) {
+  .color-card {
+    width: 20vw;
+  }
 }
