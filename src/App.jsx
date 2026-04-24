@@ -24,9 +24,7 @@ function App() {
         color.id === editColor.id
           ? {
               ...color,
-              role: editColor.role,
-              hex: editColor.hex,
-              contrastText: editColor.contrastText,
+              ...editColor,
             }
           : color,
       ),
@@ -35,10 +33,10 @@ function App() {
 
   return (
     <>
-      <h1>Theme Creator</h1>
+      <h1 className="headline">Theme Creator</h1>
       <ColorForm onColorButton={handleAddColor} buttonName={"ADD COLOR"} />
       {colors.length !== 0 ? (
-        <ul>
+        <ul className="color-cards">
           {colors.map((color) => (
             <li key={color.id} className="color-card">
               <Color
