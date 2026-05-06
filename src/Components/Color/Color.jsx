@@ -107,10 +107,10 @@ export default function Color({
           <ColorForm
             onColorButton={handleEditColor}
             initialData={{ role: role, hex: hex, contrastText: contrastText }}
-            buttonName={"UPDATE COLOR"}
+            buttonName={"update color"}
           />
           <button type="button" onClick={() => setIsEdit(!isEdit)}>
-            CANCEL
+            cancel
           </button>{" "}
         </>
       ) : (
@@ -123,19 +123,19 @@ export default function Color({
             <>
               <span className="color-card__highlight">Really Delete?</span>
               <button type="button" onClick={() => setConfirmation(false)}>
-                CANCEL
+                cancel
               </button>
               <button type="button" onClick={() => onDeleteColor(id)}>
-                DELETE
+                delete
               </button>
             </>
           ) : (
             <>
               <button type="button" onClick={() => setConfirmation(true)}>
-                DELETE
+                delete
               </button>
               <button type="button" onClick={() => setIsEdit(!isEdit)}>
-                EDIT
+                edit
               </button>
             </>
           )}
