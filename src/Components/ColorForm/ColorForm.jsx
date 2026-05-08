@@ -23,7 +23,6 @@ export default function ColorForm({
     form.elements.role.focus();
   }
 
-  console.log("im form");
   return (
     <form className="color-form" onSubmit={handleSubmit}>
       <label htmlFor="role">Role</label>

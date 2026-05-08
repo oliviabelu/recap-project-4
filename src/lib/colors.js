@@ -28,4 +28,22 @@ export const initialColors = [
     hex: "#43464b",
     contrastText: "#FFFFFF",
   }, // Lighter charcoal
+  {
+    id: "c10",
+    role: "secondary main",
+    hex: "#5C6BC0",
+    contrastText: "#FFFFFF",
+  }, // Indigo Blue
+  {
+    id: "c11",
+    role: "secondary dark",
+    hex: "#3949AB",
+    contrastText: "#FFFFFF",
+  }, // Darker indigo blue
+  {
+    id: "c12",
+    role: "secondary light",
+    hex: "#9FA8DA",
+    contrastText: "#000000",
+  }, // Lighter indigo blue
 ];
