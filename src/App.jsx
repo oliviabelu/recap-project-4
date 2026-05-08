@@ -6,7 +6,7 @@ import "./App.css";
 import { uid } from "uid";
 import useLocalStorageState from "use-local-storage-state";
 import { Theme } from "./Components/Theme/Theme";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function App() {
   const [colors, setColors] = useLocalStorageState("colors", {
@@ -18,25 +18,45 @@ function App() {
     defaultValue: initialThemes,
   });
 
-  //const [currentThemeColors, setCurrentThemeColors] = useState(null);
-
+  //const [currentThemeColors, setCurrentThemeColors] = useState([]);
+  const currentTheme = themes.find((theme) => theme.isCurrentTheme);
+  const currentThemeColors = currentTheme
+    ? colors.filter((color) => currentTheme.colors.includes(color.id))
+    : [];
+  //let currentThemeColors = [];
   //localStorage.clear();
   //const [themes, setThemes] = useState(initialThemes);
 
-  //---set current theme colors
+  //---set current theme colors--------------------------------------------------------------
+
+  // function getCurrentThemeColors() {
+  //   const currentTheme = themes.find((theme) => theme.isCurrentTheme === true);
+  //   console.log(currentTheme);
+  //   return currentTheme.colors.map((themeColor) =>
+  //     colors.find((color) => color.id === themeColor),
+  //   );
+  // }
+
+  // useEffect(() => {
+  //   console.log("inside use effect");
+  //   setCurrentThemeColorsState();
+  // }, []);
 
   //---Color Handling------------------------------------------------------------------------------
   function handleAddColor(newColor) {
-    console.log(newColor);
+    // console.log("add new color");
+    // console.log(newColor);
     const newUid = uid();
     setColors([{ id: newUid, ...newColor }, ...colors]);
-    // setThemes(
-    //   themes.map((theme) =>
-    //     theme.isCurrentTheme === true
-    //       ? { ...theme, colors: [...colors, newUid] }
-    //       : theme,
-    //   ),
-    // );
+
+    setThemes(
+      themes.map((theme) =>
+        theme.isCurrentTheme === true
+          ? { ...theme, colors: [newUid, ...theme.colors] }
+          : theme,
+      ),
+    );
+    console.log(themes, colors);
   }
 
   function handleDeleteColor(colorId) {
@@ -65,13 +85,13 @@ function App() {
           : { ...theme, isCurrentTheme: false },
       ),
     );
-
-    const { colors } = themes.find((theme) => theme.id === themeId);
-    setColors(
-      colors.map((color) =>
-        initialColors.find((initialColor) => initialColor.id === color),
-      ),
-    );
+    //setCurrentThemeColorsState();
+    // const { colors } = themes.find((theme) => theme.id === themeId);
+    // setColors(
+    //   colors.map((color) =>
+    //     initialColors.find((initialColor) => initialColor.id === color),
+    //   ),
+    // );
   }
 
   function handleAddTheme(themeId, themeName) {
@@ -84,7 +104,6 @@ function App() {
       ...resetThemes,
       { id: themeId, name: themeName, colors: [], isCurrentTheme: true },
     ]);
-    setColors([]);
   }
 
   function handleDeleteTheme(themeId) {
@@ -92,14 +111,16 @@ function App() {
   }
 
   function handleUpdateThemeName(themeId, themeName) {
-    console.log(themeName, themeId);
     setThemes(
       themes.map((theme) =>
         theme.id === themeId ? { ...theme, name: themeName } : theme,
       ),
     );
   }
-  console.log(themes);
+  //console.log(themes);
+  //console.log(currentThemeColors);
+  //currentThemeColors = getCurrentThemeColors();
+
   return (
     <>
       <h1 className="headline">Theme Creator</h1>
@@ -111,9 +132,9 @@ function App() {
         onUpdateThemeName={handleUpdateThemeName}
       />
       <ColorForm onColorButton={handleAddColor} buttonName={"add color"} />
-      {colors.length !== 0 ? (
+      {currentThemeColors.length !== 0 ? (
         <ul className="color-cards">
-          {colors.map((color) => (
+          {currentThemeColors.map((color) => (
             <li key={color.id} className="color-card">
               <Color
                 id={color.id}
